@@ -31,36 +31,49 @@ tools/
 └── scripts/           ← Shared CLI utilities
 ```
 
-## 🚀 Quick Start
+## How to run
 
-### 1. Install dependencies
+Two processes. The UI does not call the API yet. Each one starts on its own.
+
+### UI (Node)
+
+From the repo root. Node 22+ and pnpm 9.
+
 ```bash
+corepack enable
+corepack prepare pnpm@9.0.0 --activate
 pnpm install
-```
-
-### 2. Start all services (parallel, with auto-reload)
-```bash
 pnpm dev
 ```
 
-### 3. Build all packages
+`pnpm dev` builds `@ccvie/core`, then starts every workspace package in watch mode. The Next.js app is at http://localhost:3000.
+
+UI checks only:
+
+```bash
+pnpm --filter @ccvie/ui run test
+pnpm --filter @ccvie/ui run type-check
+```
+
+### API (Python)
+
+From the repo root. Python 3.11+.
+
+```bash
+copy .env.example .env
+python -m pip install -e backend
+python -m uvicorn ccvie.retrieval_gen.api:app --app-dir backend/src --reload --port 8000
+```
+
+The API listens on http://localhost:8000. Interactive docs are at http://localhost:8000/docs. On Windows, use `py -3` if `python` is not on PATH. `copy` is the Windows command; on macOS or Linux use `cp .env.example .env`. The app defines no routes yet.
+
+### Other root scripts
+
 ```bash
 pnpm build
-```
-
-### 4. Run tests
-```bash
 pnpm test
-```
-
-### 5. Type checking
-```bash
 pnpm type-check
-```
-
-### 6. Run evaluation harness
-```bash
-pnpm eval
+pnpm lint
 ```
 
 ## 🛠️ Development

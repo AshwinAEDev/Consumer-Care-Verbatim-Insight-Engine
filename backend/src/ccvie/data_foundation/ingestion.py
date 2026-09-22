@@ -1,0 +1,1 @@
+"""Hourly batch ingestion job."""

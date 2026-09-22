@@ -1,0 +1,17 @@
+[project]
+name = "ccvie"
+version = "0.0.1"
+description = "Consumer Care Verbatim Insight Engine API"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "pydantic-settings>=2.6",
+    "uvicorn>=0.32",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

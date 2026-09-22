@@ -37,4 +37,10 @@ coverage/
 .turbo/
 tmp/
 
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
 reference_doc
