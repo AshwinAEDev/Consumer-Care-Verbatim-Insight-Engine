@@ -1,0 +1,21 @@
+{
+    "version":  "0.0.1",
+    "name":  "@ccvie/core",
+    "description":  "Shared types, interfaces, and constants",
+    "exports":  {
+                    ".":  {
+                              "types":  "./dist/index.d.ts",
+                              "import":  "./dist/index.js"
+                          }
+                },
+    "type":  "module",
+    "scripts":  {
+                    "lint":  "eslint src --ext .ts",
+                    "build":  "tsup src/index.ts --format esm --dts",
+                    "dev":  "tsup src/index.ts --format esm --dts --watch",
+                    "type-check":  "tsc --noEmit"
+                },
+    "dependencies":  {
+                         "zod":  "^3.22.0"
+                     }
+}

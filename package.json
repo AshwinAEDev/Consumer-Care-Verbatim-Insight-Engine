@@ -1,0 +1,25 @@
+{
+    "version": "0.0.1",
+    "name": "ccvie",
+    "packageManager": "pnpm@9.0.0",
+    "description": "Consumer Care Verbatim Insight Engine - Early detection of emerging product issues",
+    "scripts": {
+        "lint": "pnpm -r --parallel run lint",
+        "test:e2e": "pnpm --filter \u0027@ccvie/ui\u0027 run test:e2e",
+        "build": "pnpm -r --filter=\u0027./packages/**\u0027 build",
+        "setup": "pnpm install",
+        "type-check": "pnpm -r --parallel run type-check",
+        "dev": "pnpm --filter @ccvie/core run build && pnpm -r --parallel run dev",
+        "test": "pnpm -r --parallel run test",
+        "eval": "pnpm --filter \u0027@ccvie/eval\u0027 run start"
+    },
+    "devDependencies": {
+        "vitest": "^1.0.0",
+        "tsup": "^8.0.0",
+        "eslint": "^8.55.0",
+        "prettier": "^3.1.0",
+        "typescript": "^5.3.0",
+        "@types/node": "^20.0.0"
+    },
+    "private": true
+}
