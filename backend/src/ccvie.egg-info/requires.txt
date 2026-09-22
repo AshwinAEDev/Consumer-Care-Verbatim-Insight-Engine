@@ -1,7 +1,3 @@
 fastapi>=0.115
 pydantic-settings>=2.6
 uvicorn>=0.32
-
-[dev]
-httpx>=0.27
-pytest>=8

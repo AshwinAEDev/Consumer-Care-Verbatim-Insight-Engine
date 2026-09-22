@@ -8,9 +8,6 @@
     "declaration": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "paths": {
-      "@ccvie/*": ["./packages/*/src"]
-    },
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
