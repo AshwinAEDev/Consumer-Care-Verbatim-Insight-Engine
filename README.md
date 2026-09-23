@@ -17,54 +17,130 @@ frontend/              Next.js attribution UI (Layer 4).
 | Attribution UI | `frontend/` |
 | Evaluation | `backend/src/ccvie/evaluation/` |
 
-API shapes are the Pydantic models in `backend/src/ccvie/contracts/`. `pnpm gen-types` writes `frontend/src/lib/types.generated.ts` from those models.
+API shapes are the Pydantic models in `backend/src/ccvie/contracts/`. `npm run gen-types` writes `frontend/src/lib/types.generated.ts` from those models.
 
-## How to run
+## Local Setup
 
-Two processes. The UI does not call the API yet. Each one starts on its own.
+### Prerequisites
 
-### UI (Node)
+- **Python 3.11+** (check: `py --version`)
+- **Node.js 22+** (check: `npm --version`)
+- **Docker Desktop** (check: `docker --version`)
 
-From the repo root. Node 22+ and pnpm 9.
+### Step 1: Bootstrap (Install all dependencies)
 
-```bash
-corepack enable
-corepack prepare pnpm@9.0.0 --activate
-pnpm install
-pnpm dev
+**Windows PowerShell:**
+```powershell
+.\bootstrap.ps1
 ```
 
-`pnpm dev` starts the Next.js app at http://localhost:3000.
+This installs:
+- Backend Python dependencies
+- Frontend Node dependencies
+- Sets up `frontend/.env.local`
 
-UI checks only:
-
+**macOS/Linux:**
 ```bash
-pnpm --filter frontend run test
-pnpm --filter frontend run type-check
-pnpm gen-types
+make bootstrap
 ```
 
-### API (Python)
+### Step 2: Start the Database
 
-From the repo root. Python 3.11+.
-
-```bash
-copy .env.example .env
-python -m pip install -e backend
-python -m uvicorn ccvie.retrieval_gen.api:app --app-dir backend/src --reload --port 8000
+```powershell
+docker compose up -d db
 ```
 
-The API listens on http://localhost:8000. Interactive docs are at http://localhost:8000/docs. On Windows, use `py -3` if `python` is not on PATH. `copy` is the Windows command; on macOS or Linux use `cp .env.example .env`. The app defines no routes yet.
-
-### Other root scripts
-
-```bash
-pnpm build
-pnpm test
-pnpm type-check
-pnpm lint
+Verify it's running:
+```powershell
+docker ps
 ```
 
-## Documentation
+You should see `ccvie-db` container with PostgreSQL + pgvector.
 
-Folder layout and stack rules: `reference_doc/create-a-code-base-radiant-salamander.md`.
+### Step 3: Start the Frontend
+
+```powershell
+cd frontend
+npm run dev
+```
+
+Open: **http://localhost:3000**
+
+The UI is live with mock data. The frontend does not call the API yet.
+
+---
+
+## Full Stack Setup (After Backend Code Arrives)
+
+When the backend developer adds code, follow these steps:
+
+### Apply Database Migrations
+
+```powershell
+# Migrations go in db/migrations/
+# The backend developer will provide these
+docker exec ccvie-db psql -U ccvie -d ccvie -f /path/to/migration.sql
+```
+
+### Seed Data
+
+```powershell
+docker exec ccvie-db psql -U ccvie -d ccvie -f db/seed/seed_taxonomy.sql
+```
+
+### Generate Frontend Types from Backend OpenAPI
+
+```powershell
+npm run gen-types
+```
+
+This reads the backend OpenAPI schema and generates `frontend/src/lib/types.generated.ts`.
+
+### Start the Backend API (Python)
+
+```powershell
+cd backend
+py -m pip install -e .
+py -m uvicorn ccvie.retrieval_gen.api:app --reload --port 8000
+```
+
+The API listens on http://localhost:8000. Interactive docs: http://localhost:8000/docs
+
+---
+
+## Frontend Development
+
+Start dev server:
+```powershell
+cd frontend
+npm run dev
+```
+
+Run checks:
+```powershell
+npm run test       # Unit tests
+npm run type-check # TypeScript check
+npm run lint       # ESLint
+npm run build      # Production build
+```
+
+## Backend Development (Python)
+
+Once backend code arrives, install and start:
+```powershell
+cd backend
+py -m pip install -e .
+py -m uvicorn ccvie.retrieval_gen.api:app --reload --port 8000
+```
+
+---
+
+## Project Structure
+
+- `backend/` — Python API and layers 1-3, 5
+- `frontend/` — Next.js UI (layer 4)
+- `db/` — Database migrations and seed data
+- `docs/` — Architecture decisions and runbooks
+- `.env` — Configuration (copy from `.env.example` and fill in values)
+
+See `docs/project-architecture-proposal.md` for the full architecture and team setup.
