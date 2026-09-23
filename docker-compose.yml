@@ -1,0 +1,22 @@
+﻿version: '3.8'
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: ccvie-db
+    environment:
+      POSTGRES_USER: ccvie
+      POSTGRES_PASSWORD: ccvie
+      POSTGRES_DB: ccvie
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ccvie"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
