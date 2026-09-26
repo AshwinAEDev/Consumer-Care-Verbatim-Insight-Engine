@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Lockfiles (large, low signal for reasoning)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Build outputs / caches
+dist/
+build/
+**/.next/
+.turbo/
+*.tsbuildinfo
+**/*.tsbuildinfo
+
+# Python artifacts
+**/__pycache__/
+*.pyc
+**/*.egg-info/
+.pytest_cache/
+.venv/
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# Secrets — never load into context
+.env
+.env.local
+.env.*.local
+
+# Generated data (gitignored bulk output, regenerate as needed per CLAUDE.md)
+data/generated/
+
+# Generated frontend types (derived from live OpenAPI schema; read backend/contracts instead)
+frontend/src/lib/types.generated.ts
+
+# Duplicate HTML exports of the markdown docs already in reference_doc/
+reference_doc/*.html
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
