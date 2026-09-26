@@ -1,0 +1,72 @@
+[
+  {
+    "query": "The Box 200g won't close, goes stale in California",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.67,
+    "expectedRoute": "vector",
+    "predictedRoute": "vector"
+  },
+  {
+    "query": "Box 200g leaking in transit to California",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.66,
+    "expectedRoute": "vector",
+    "predictedRoute": "vector"
+  },
+  {
+    "query": "The Resealable Bag v1 won't close, goes stale in Pacific Northwest",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.6,
+    "expectedRoute": "vector",
+    "predictedRoute": "vector"
+  },
+  {
+    "query": "The Resealable Bag v1 won't close, goes stale in Northeast",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.62,
+    "expectedRoute": "vector",
+    "predictedRoute": "vector"
+  },
+  {
+    "query": "Ordered Crunchy Chips got wrong flavor",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.69,
+    "expectedRoute": "vector",
+    "predictedRoute": "vector"
+  },
+  {
+    "query": "Ordered Crunchy Chips got wrong flavor",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.81,
+    "expectedRoute": "graph",
+    "predictedRoute": "graph"
+  },
+  {
+    "query": "Box 200g leaking in transit to Pacific Northwest",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.77,
+    "expectedRoute": "vector",
+    "predictedRoute": "vector"
+  },
+  {
+    "query": "Resealable Bag v2 - New Lid half empty - Crunchy Chips",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.88,
+    "expectedRoute": "graph",
+    "predictedRoute": "graph"
+  },
+  {
+    "query": "Ordered Crunchy Chips got wrong flavor",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.72,
+    "expectedRoute": "vector",
+    "predictedRoute": "vector"
+  },
+  {
+    "query": "Ordered Cookies Pack got wrong flavor",
+    "entityCount": 4,
+    "taxonomyCoverage": 0.64,
+    "expectedRoute": "vector",
+    "predictedRoute": "vector"
+  }
+]

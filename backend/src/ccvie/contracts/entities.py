@@ -64,3 +64,4 @@ class Verbatim(BaseModel):
     source: VerbatimSource
     timestamp: datetime
     customerSegment: str | None = None
+    verbatimHash: str

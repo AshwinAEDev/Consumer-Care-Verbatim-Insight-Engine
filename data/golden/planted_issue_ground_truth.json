@@ -1,0 +1,12 @@
+[
+  {
+    "plantedIssueId": "PLANTED_001_PNW_NEW_LID_SEAL",
+    "product": "Crunchy Chips",
+    "region": "Pacific Northwest",
+    "issueType": "Seal Failure",
+    "weekStart": "2026-02-07",
+    "weekEnd": "2026-02-13",
+    "complaintCount": 45,
+    "expectedLeadTimeDays": 7
+  }
+]

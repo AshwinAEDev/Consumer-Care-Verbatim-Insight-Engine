@@ -4,7 +4,7 @@ import { clusters } from "./verbatims";
 
 const copy: Record<
   IssueType,
-  { title: string; summary: string; confidence: number; leadTime?: number }
+  { title: string; summary: string; confidence: number; leadTime?: number; costUsd: number }
 > = {
   packaging: {
     title: "Harbor Crisp bags are not resealing in the Pacific Northwest",
@@ -12,6 +12,7 @@ const copy: Record<
       "Twelve complaints in the Pacific Northwest say the new 8 oz resealable bag opens in the pantry and the crackers go soft. The count jumped this week, ahead of the monthly packaging average.",
     confidence: 0.96,
     leadTime: 9,
+    costUsd: 0.18,
   },
   freshness: {
     title: "Northline Oats pouches smell stale across the Midwest",
@@ -19,6 +20,7 @@ const copy: Record<
       "Eight Midwest complaints describe soft, sour oats in 18 oz pouches that are still inside the printed date. The spike is concentrated in the latest week of arrivals.",
     confidence: 0.91,
     leadTime: 7,
+    costUsd: 0.14,
   },
   taste: {
     title: "Cedar Brew grounds taste burnt in the Northeast",
@@ -26,6 +28,7 @@ const copy: Record<
       "Seven Northeast complaints say the latest 12 oz grounds are harsh and ashy against the usual cocoa finish. Callers compared the same brew method with last month and blamed the lot.",
     confidence: 0.84,
     leadTime: 6,
+    costUsd: 0.11,
   },
   shipping: {
     title: "Marlowe Soup cans are arriving crushed in the Southeast",
@@ -33,6 +36,7 @@ const copy: Record<
       "Six Southeast deliveries arrived late with dented or leaking 15 oz cans. The damage shows up in the shipping notes, not in a plant-quality complaint.",
     confidence: 0.78,
     leadTime: 4,
+    costUsd: 0.09,
   },
   quality: {
     title: "Fieldbar Granola is clumping in the Southwest",
@@ -40,6 +44,7 @@ const copy: Record<
       "Five Southwest bags of the 10 oz granola arrived as hard clumps or fine dust. Shoppers in Phoenix, Tucson, and Albuquerque described the same texture.",
     confidence: 0.74,
     leadTime: 3,
+    costUsd: 0.08,
   },
   damaged: {
     title: "Harbor Crisp cartons are crushed in the Mountain West",
@@ -47,18 +52,21 @@ const copy: Record<
       "Five Mountain West complaints found 12 ct cartons caved in on the shelf, with sleeves already powder. This is shelf damage, separate from the reseal failure on the bag.",
     confidence: 0.71,
     leadTime: 2,
+    costUsd: 0.07,
   },
   quantity: {
     title: "Northline Oats 6 ct boxes are short a pouch",
     summary:
       "Four Pacific Northwest boxes sold as a 6 count contained five pouches, with the empty slot still glued shut. The cluster is small and has no measured lead time yet.",
     confidence: 0.66,
+    costUsd: 0.05,
   },
   other: {
     title: "Cedar Brew bottle labels disagree with the cap",
     summary:
       "Three Midwest cold brew bottles show a roast or flavor on the cap that the front label does not match. The notes are too mixed to time against the monthly baseline.",
     confidence: 0.63,
+    costUsd: 0.04,
   },
 };
 
@@ -75,6 +83,7 @@ export const insights: InsightResponse[] = clusters.map((cluster, index) => {
     affectedRegion: cluster.regionName,
     detectedAt: cluster.detectedAt,
     verbatimIds: cluster.verbatimIds,
+    costUsd: text.costUsd,
   };
   if (text.leadTime !== undefined) {
     insight.leadTime = text.leadTime;

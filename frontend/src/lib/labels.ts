@@ -21,6 +21,10 @@ export function leadTimeLabel(days: number): string {
   return `${Math.abs(days)} days after the monthly baseline`;
 }
 
+export function formatUsd(value: number): string {
+  return `$${value.toFixed(2)}`;
+}
+
 export function formatTimestamp(date: Date): string {
   return new Intl.DateTimeFormat("en", {
     month: "short",

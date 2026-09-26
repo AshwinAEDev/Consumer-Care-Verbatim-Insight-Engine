@@ -38,6 +38,7 @@ export interface Verbatim {
   source: VerbatimSource;
   timestamp: Date;
   customerSegment?: string;
+  verbatimHash: string;
 }
 export interface InsightResponse {
   id: string;
@@ -51,6 +52,7 @@ export interface InsightResponse {
   detectedAt: Date;
   verbatimIds: string[];
   leadTime?: number;
+  costUsd?: number;
 }
 export interface QueryFilters {
   product?: string;

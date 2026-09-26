@@ -9,7 +9,12 @@ export function SiteHeader() {
           <span className="font-display text-lg tracking-tight">Nordbrook</span>
           <span className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">Insights</span>
         </Link>
-        <ThemeToggle />
+        <nav className="flex items-center gap-4">
+          <Link href="/routing" className="text-sm text-muted-foreground hover:text-foreground">
+            Routing proof
+          </Link>
+          <ThemeToggle />
+        </nav>
       </div>
     </header>
   );

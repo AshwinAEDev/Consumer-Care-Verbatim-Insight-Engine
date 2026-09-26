@@ -1,11 +1,13 @@
 "use client";
 
 import { VERBATIM_SOURCES, type Verbatim } from "@/lib/types.generated";
-import { ClipboardList, Mail, MessagesSquare, Phone, Star } from "lucide-react";
+import { ClipboardList, Copy, Mail, MessagesSquare, Phone, ShieldCheck, Star } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { complaintLabel, formatTimestamp } from "@/lib/labels";
 
 const sourceMeta: Record<(typeof VERBATIM_SOURCES)[number], { label: string; icon: LucideIcon }> = {
@@ -79,6 +81,28 @@ export function VerbatimDrilldown({ verbatims, citedCount, regionLabel }: Verbat
                             {formatTimestamp(verbatim.timestamp)}
                           </time>
                           {regionLabel ? <Badge variant="outline">{regionLabel}</Badge> : null}
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Badge variant="outline" className="gap-1">
+                                <ShieldCheck className="h-3 w-3" aria-hidden />
+                                {verbatim.verbatimHash}
+                              </Badge>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              Hash of the cited verbatim. Matches the source record — this
+                              complaint was not hallucinated or substituted.
+                            </TooltipContent>
+                          </Tooltip>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            className="h-5 w-5"
+                            onClick={() => navigator.clipboard.writeText(verbatim.id)}
+                            aria-label="Copy verbatim ID"
+                          >
+                            <Copy className="h-3 w-3" aria-hidden />
+                          </Button>
                         </div>
                         <p className="text-sm leading-6">{verbatim.text}</p>
                       </li>

@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { complaintLabel, formatTimestamp, leadTimeLabel } from "@/lib/labels";
+import { complaintLabel, formatTimestamp, formatUsd, leadTimeLabel } from "@/lib/labels";
 import { getInsightById, getVerbatimsByIds } from "@/lib/api-client";
 
 export default function InsightPage() {
@@ -79,6 +79,18 @@ export default function InsightPage() {
               </TooltipTrigger>
               <TooltipContent>
                 Days earlier than a monthly rollup would have surfaced this cluster.
+              </TooltipContent>
+            </Tooltip>
+          ) : null}
+          {insight.costUsd !== undefined ? (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button type="button" className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  <Badge variant="outline">{formatUsd(insight.costUsd)} to generate</Badge>
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                Retrieval and LLM synthesis cost for this insight.
               </TooltipContent>
             </Tooltip>
           ) : null}

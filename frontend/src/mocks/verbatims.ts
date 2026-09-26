@@ -1,4 +1,5 @@
 import { VERBATIM_SOURCES, type IssueType, type Verbatim } from "@/lib/types.generated";
+import { shortHash } from "@/lib/hash";
 import { startOfWeek } from "../lib/trend";
 import { daysAgo, mockId } from "./seed";
 
@@ -54,6 +55,7 @@ function build(spec: Spec): { meta: ClusterMeta; rows: Verbatim[] } {
     issueType: spec.issueType,
     source: VERBATIM_SOURCES[index % VERBATIM_SOURCES.length],
     timestamp: timestampFor(detectedAt, index, spec.lines.length),
+    verbatimHash: shortHash(`${spec.idStart + index}:${text}`),
   }));
 
   return {

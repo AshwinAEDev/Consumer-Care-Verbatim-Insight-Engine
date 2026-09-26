@@ -43,4 +43,7 @@ __pycache__/
 .pytest_cache/
 *.pyc
 
+# Generated data (regenerate with data/generators/)
+data/generated/
+
 reference_doc

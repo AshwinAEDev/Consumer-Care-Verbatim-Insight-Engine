@@ -18,3 +18,4 @@ class InsightResponse(BaseModel):
     detectedAt: datetime
     verbatimIds: list[UUID]
     leadTime: float | None = None
+    costUsd: float | None = None
